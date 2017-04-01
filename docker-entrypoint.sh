@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+set -x
 
 # usage: file_env VAR [DEFAULT]
 #    ie: file_env 'XYZ_DB_PASSWORD' 'example'
@@ -72,6 +73,8 @@ case "$1" in
 			
 			REDMINE_DB_ADAPTER="$adapter"
 			REDMINE_DB_HOST="$host"
+echo "#############################"
+pwd
 			echo "$RAILS_ENV:" > config/database.yml
 			for var in \
 				adapter \
