@@ -1,0 +1,34 @@
+apiVersion: v1
+kind: DeploymentConfig
+metadata:
+  name: redmine-sample
+spec:
+  template:
+    metadata:
+      labels:
+        name: redmine-sample
+    spec:
+      containers:
+      - name: redmine-latest
+        image: 172.30.71.238:5000/sample01/redmine:deploy
+        ports:
+        - containerPort: 3000
+          protocol: TCP
+        env:
+        - name: REDMINE_DB_MYSQL
+          value: mysql-sample-2-moe4j
+        - name: REDMINE_DB_PASSWORD
+          value: example
+  replicas: 1
+  selector:
+    name: redmine-sample
+  triggers:
+  - type: ImageChange
+    imageChangeParams:
+      automatic: true
+      containerNames:
+      - redmine-sample-latest
+      from:
+        kind: ImageStreamTag
+        name: 172.30.71.238:5000/sample01/redmine:deploy
+  - type: ConfigChange
