@@ -83,6 +83,7 @@ RUN buildDeps=' \
 
 VOLUME /usr/src/redmine/files
 
+RUN pwd
 COPY docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
