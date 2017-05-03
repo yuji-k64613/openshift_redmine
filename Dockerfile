@@ -82,6 +82,7 @@ RUN buildDeps=' \
 
 
 RUN chown redmine:redmine /usr/src/redmine
+USER redmine
 VOLUME /usr/src/redmine/files
 
 COPY docker-entrypoint.sh /
