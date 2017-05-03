@@ -10,13 +10,14 @@ spec:
     spec:
       containers:
       - name: redmine-latest
-        image: 172.30.71.238:5000/sample01/redmine:deploy
+        image: redmine:latest
         ports:
         - containerPort: 3000
           protocol: TCP
         env:
         - name: REDMINE_DB_MYSQL
-          value: mysql-sample-2-moe4j
+          value: mysql-sample
+          #value: mysql-sample-2-moe4j
         - name: REDMINE_DB_PASSWORD
           value: example
   replicas: 1
@@ -30,5 +31,5 @@ spec:
       - redmine-sample-latest
       from:
         kind: ImageStreamTag
-        name: 172.30.71.238:5000/sample01/redmine:deploy
+        name: redmine:latest
   - type: ConfigChange
