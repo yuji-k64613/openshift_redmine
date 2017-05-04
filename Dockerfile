@@ -82,6 +82,7 @@ RUN buildDeps=' \
 
 
 RUN chown redmine:redmine /usr/src/redmine
+RUN chmod 777 /usr/src/redmine
 USER redmine
 VOLUME /usr/src/redmine/files
 
