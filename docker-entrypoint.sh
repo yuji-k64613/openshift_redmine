@@ -1,5 +1,7 @@
 #!/bin/bash
 set -e
+# edit
+export USER_ID=$(id -u)
 
 # usage: file_env VAR [DEFAULT]
 #    ie: file_env 'XYZ_DB_PASSWORD' 'example'
@@ -73,7 +75,8 @@ case "$1" in
 			REDMINE_DB_ADAPTER="$adapter"
 			REDMINE_DB_HOST="$host"
 echo PWD=`pwd` 1>&2
-id 1>&2
+echo USER_ID 1>&2
+id -u 1>&2
 ls -l 1>&2
 			echo "$RAILS_ENV:" > config/database.yml
 			for var in \
