@@ -2,6 +2,7 @@
 set -e
 # edit
 export USER_ID=$(id -u)
+export GROUP_ID=$(id -g)
 
 # usage: file_env VAR [DEFAULT]
 #    ie: file_env 'XYZ_DB_PASSWORD' 'example'
@@ -69,7 +70,8 @@ case "$1" in
 				file_env 'REDMINE_DB_ENCODING' 'utf8'
 				
 				mkdir -p "$(dirname "$REDMINE_DB_DATABASE")"
-				chown -R redmine:redmine "$(dirname "$REDMINE_DB_DATABASE")"
+				#chown -R redmine:redmine "$(dirname "$REDMINE_DB_DATABASE")"
+				chown -R $GROUP_ID:$USER_ID "$(dirname "$REDMINE_DB_DATABASE")"
 			fi
 			
 			REDMINE_DB_ADAPTER="$adapter"
@@ -114,7 +116,8 @@ ls -l 1>&2
 		fi
 		
 		# https://www.redmine.org/projects/redmine/wiki/RedmineInstall#Step-8-File-system-permissions
-		chown -R redmine:redmine files log public/plugin_assets
+		#chown -R redmine:redmine files log public/plugin_assets
+		chown -R $GROUP_ID:$USER_ID files log public/plugin_assets
 		chmod -R 755 files log tmp public/plugin_assets
 		
 		# remove PID file to enable restarting the container
