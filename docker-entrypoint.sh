@@ -3,6 +3,11 @@ set -e
 # edit
 export USER_ID=$(id -u)
 export GROUP_ID=$(id -g)
+ls -ld . | grep redmine
+RET=$?
+if [ $RET -eq 0 ]; then
+	chown -R $USER_ID:$GROUP_ID .
+fi
 
 # usage: file_env VAR [DEFAULT]
 #    ie: file_env 'XYZ_DB_PASSWORD' 'example'
