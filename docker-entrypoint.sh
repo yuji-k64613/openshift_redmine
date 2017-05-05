@@ -75,7 +75,7 @@ case "$1" in
 			REDMINE_DB_ADAPTER="$adapter"
 			REDMINE_DB_HOST="$host"
 echo PWD=`pwd` 1>&2
-echo USER_ID 1>&2
+echo $USER_ID 1>&2
 id -u 1>&2
 ls -l 1>&2
 			echo "$RAILS_ENV:" > config/database.yml
