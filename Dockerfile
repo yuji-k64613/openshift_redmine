@@ -81,9 +81,6 @@ RUN buildDeps=' \
 	&& apt-get purge -y --auto-remove $buildDeps
 
 
-#RUN chown redmine:redmine /usr/src/redmine
-#RUN chmod 777 /usr/src/redmine
-USER 997
 VOLUME /usr/src/redmine/files
 
 COPY docker-entrypoint.sh /
